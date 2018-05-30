@@ -1,6 +1,13 @@
 import * as constants from "../constants/index"
 
 ///////////////////////////////////////// Heading //////////////////////////////////////////////////////////////////////
+export const headingNameChanged = (dispatch, widgetId, newName) => (
+    dispatch({
+        type: constants.HEADING_NAME_CHANGED,
+        id: widgetId,
+        name: newName})
+)
+
 export const headingTextChanged = (dispatch, widgetId, newText) => (
   dispatch({
     type: constants.HEADING_TEXT_CHANGED,
@@ -28,6 +35,17 @@ export const listTextChanged = (dispatch,widgetId,newListText) =>(
 
 )
 
+export const listNameChanged = (dispatch,widgetId,newListName) =>(
+
+    dispatch({
+        type : constants.LIST_NAME_CHANGED,
+        id: widgetId,
+        name: newListName
+
+    })
+
+)
+
 export const listTypeChanged = (dispatch,widgetId,listType) =>(
     dispatch({
         type : constants.LIST_TYPE_CHANGED,
@@ -46,8 +64,43 @@ export const imageTextChanged = (dispatch,widgetId,imageText) =>(
     })
 )
 
+export const imageNameChanged = (dispatch,widgetId,imageName) =>(
+    dispatch({
+        type : constants.IMAGE_NAME_CHANGED,
+        id: widgetId,
+        name: imageName
+    })
+)
 
 /////////////////////////////////////// Image End///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////// Link ////////////////////////////////////////////////////////////////////////
+export const linkTextChanged = (dispatch,widgetId,linkText) =>(
+    dispatch({
+        type : constants.LINK_TEXT_CHANGED,
+        id: widgetId,
+        text: linkText
+    })
+)
+
+export const linkDispChanged = (dispatch,widgetId,linkDispText) =>(
+    dispatch({
+        type : constants.LINK_DISP_CHANGED,
+        id: widgetId,
+        linkName: linkDispText
+    })
+)
+
+export const linkNameChanged = (dispatch,widgetId,linkName) =>(
+    dispatch({
+        type : constants.LINK_NAME_CHANGED,
+        id: widgetId,
+        name: linkName
+    })
+)
+
+/////////////////////////////////////// Link End///////////////////////////////////////////////////////////////////////
+
 
 ///////////////////////////////////////// Paragraph ////////////////////////////////////////////////////////////////////
 export const paraTextChanged = (dispatch,widgetId,newText) =>(
@@ -57,6 +110,15 @@ export const paraTextChanged = (dispatch,widgetId,newText) =>(
         text: newText
     })
 )
+
+export const paraNameChanged = (dispatch,widgetId,newName) =>(
+    dispatch({
+        type : constants.PARAGRAPH_NAME_CHANGED,
+        id: widgetId,
+        name: newName
+    })
+)
+
 
 
 /////////////////////////////////////// Paragraph End //////////////////////////////////////////////////////////////////

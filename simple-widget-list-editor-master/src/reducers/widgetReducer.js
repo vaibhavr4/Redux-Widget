@@ -4,6 +4,38 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
   let newState
   switch (action.type) {
 
+      case constants.INCREASE_ORDER_WIDGET:
+          return {
+              widgets: state.widgets.map(widget => {
+                  if(widget.widgetOrder == action.widgetOrder) {
+                      widget.widgetOrder = widget.widgetOrder + 1;
+                      return Object.assign({}, widget)
+                  }
+
+                  if(widget.widgetOrder == (action.widgetOrder+1)){
+                      widget.widgetOrder = widget.widgetOrder - 1;
+                      return Object.assign({}, widget)
+                  }
+                  return Object.assign({}, widget)
+              }).sort(function(a,b) {return (a.widgetOrder > b.widgetOrder) ? 1 : ((b.widgetOrder > a.widgetOrder) ? -1 : 0);} )
+          }
+
+      case constants.DECREASE_ORDER_WIDGET:
+          return {
+              widgets: state.widgets.map(widget => {
+                  if(widget.widgetOrder == action.widgetOrder) {
+                      widget.widgetOrder = widget.widgetOrder - 1;
+                      return Object.assign({}, widget)
+                  }
+
+                  if(widget.widgetOrder == (action.widgetOrder-1)){
+                      widget.widgetOrder = widget.widgetOrder + 1;
+                      return Object.assign({}, widget)
+                  }
+                  return Object.assign({}, widget)
+              }).sort(function(a,b) {return (a.widgetOrder > b.widgetOrder) ? 1 : ((b.widgetOrder > a.widgetOrder) ? -1 : 0);} )
+          }
+
       case constants.IMAGE_TEXT_CHANGED:
           let newState4=
               {
@@ -20,6 +52,74 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
               }
           return JSON.parse(JSON.stringify(newState4))
+
+      case constants.IMAGE_NAME_CHANGED:
+          let newState6=
+              {
+
+                  widgets: state.widgets.map(widget => {
+                      if (widget.id === action.id) {
+                          widget.name = action.name
+                          console.log(widget.name)
+                      }
+
+                      return Object.assign({}, widget);
+
+                  })
+
+              }
+          return JSON.parse(JSON.stringify(newState6))
+
+      case constants.LINK_TEXT_CHANGED:
+          let newState9=
+              {
+
+                  widgets: state.widgets.map(widget => {
+                      if (widget.id === action.id) {
+                          widget.text = action.text
+
+                      }
+
+                      return Object.assign({}, widget);
+
+                  })
+
+              }
+          return JSON.parse(JSON.stringify(newState9))
+
+      case constants.LINK_DISP_CHANGED:
+          let newState10=
+              {
+
+                  widgets: state.widgets.map(widget => {
+                      if (widget.id === action.id) {
+                          widget.linkName = action.linkName
+                          console.log(widget.linkName)
+                      }
+
+                      return Object.assign({}, widget);
+
+                  })
+
+              }
+          return JSON.parse(JSON.stringify(newState10))
+
+      case constants.LINK_NAME_CHANGED:
+          let newState8=
+              {
+
+                  widgets: state.widgets.map(widget => {
+                      if (widget.id === action.id) {
+                          widget.name = action.name
+                          console.log(widget.name)
+                      }
+
+                      return Object.assign({}, widget);
+
+                  })
+
+              }
+          return JSON.parse(JSON.stringify(newState8))
 
       case constants.PARAGRAPH_TEXT_CHANGED:
           let newState3=
@@ -38,6 +138,23 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
               }
           return JSON.parse(JSON.stringify(newState3))
 
+      case constants.PARAGRAPH_NAME_CHANGED:
+          let newState5=
+              {
+
+                  widgets: state.widgets.map(widget => {
+                      if (widget.id === action.id) {
+                          widget.name = action.name
+                          console.log(widget.name)
+                      }
+
+                      return Object.assign({}, widget);
+
+                  })
+
+              }
+          return JSON.parse(JSON.stringify(newState5))
+
       case constants.LIST_TEXT_CHANGED:
         let newState2=
           {
@@ -54,6 +171,24 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
           }
           return JSON.parse(JSON.stringify(newState2))
+
+      case constants.LIST_NAME_CHANGED:
+          let newState7=
+              {
+
+                  widgets: state.widgets.map(widget => {
+                      if (widget.id === action.id) {
+                          widget.name = action.name
+
+                      }
+
+                      return Object.assign({}, widget);
+
+                  })
+
+              }
+          return JSON.parse(JSON.stringify(newState7))
+
 
 
 
@@ -87,6 +222,17 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
           return Object.assign({}, widget)
         })
       }
+
+      case constants.HEADING_NAME_CHANGED:
+          return {
+              widgets: state.widgets.map(widget => {
+                  if(widget.id === action.id) {
+                      widget.name = action.name
+                  }
+                  return Object.assign({}, widget)
+              })
+          }
+
 
     case constants.HEADING_SIZE_CHANGED:
       return {
@@ -145,7 +291,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             widgetType: 'Paragraph',
             size: '2',
               listType: '1',
-              listText: 'List Text'
+              listText: 'List Text',
+              widgetOrder: state.widgets.length + 1
           }
         ]
       }
